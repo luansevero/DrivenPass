@@ -1,3 +1,3 @@
 import { Users } from "@prisma/client";
 
-export type authData = Omit<Users, "id">;
+export type AuthData = Omit<Users, "id">;
