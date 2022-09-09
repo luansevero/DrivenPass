@@ -3,7 +3,7 @@ import { SafetyNotes } from "@prisma/client";
 import { GetSafetyNoteData } from "../types/safetyNoteTypes";
 import { ErrorInfo } from "../middlewares/errorHandlerMiddleware";
 
-export async function find(title:string) {
+export async function findTitle(title:string) {
     const safetyNote : SafetyNotes = await safetyNoteRepository.findByTitle(title);
     if(safetyNote) throw new ErrorInfo("error_unprocessable_entity", "Already have the same safety note title");
 }
