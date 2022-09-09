@@ -1,17 +1,21 @@
+import bcrypt from "bcrypt";
 import * as authRepository from "../repositories/authRepository";
-import { AuthData } from "../types/authTypes";
 import { ErrorInfo } from "../middlewares/errorHandlerMiddleware";
+import { Users } from "@prisma/client";
+import { Console } from "console";
 
 export async function newAccount(email: string){
-    const account : AuthData = await authRepository.findByEmail(email);
+    const account : Users = await authRepository.findByEmail(email);
     if(account) throw new ErrorInfo("error_conflict", "This email is already in use");
 };
 
 export async function haveAccount(email:string){
-    const account : AuthData = await authRepository.findByEmail(email);
-    if(!account) throw new ErrorInfo("error_conflict", "Invalid email our password");
+    const account : Users = await authRepository.findByEmail(email);
+    if(!account) throw new ErrorInfo("error_forbidden", "Invalid email our password");
+    return account;
 };
 
-export async function samePassword(password:string){
-    const 
+export function samePassword(password:string, userPassword:string){
+    const isPasswordRight = bcrypt.compareSync(password, userPassword);
+    if(!isPasswordRight) throw new ErrorInfo("error_forbidden", "Invalid email our password")
 }
