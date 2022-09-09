@@ -1,5 +1,9 @@
 import { Credentials } from "@prisma/client";
 
-export type CreateCredentialData = Omit<Credentials, "id" | "userId" | "creationDate">;
+export type GetCredentialData = Omit<Credentials, "creationDate" >;
 
-export type GetCredentialData = Omit<Credentials, "userId" | "creationDate">;
+export type CredentialData = Omit<GetCredentialData, "id" >
+
+export type CreateCredentialData = Omit<CredentialData, "userId">;
+
+export type DuplicateCredentials = Omit<CredentialData, "url" | "password" >
