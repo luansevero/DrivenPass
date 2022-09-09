@@ -8,9 +8,14 @@ export function validateSchemaMiddleware(schema: ObjectSchema) {
     if (validation.error) {
         const details = validation.error.details;
         const errors = details.map(details => {
-            const erro = details.path;
-            const message = details.message.split(" ").splice(1).join(" ");
-            return {[erro[0]]:message}
+            const erro = details.path[0];
+            if(erro !== "url"){
+              const message = details.message.split(" ").splice(1).join(" ");
+              return {[erro]:message}
+            } else {
+              return {[erro]:"Invalid Url"}
+            }
+
         })
       return res.status(422).send(errors)
     }

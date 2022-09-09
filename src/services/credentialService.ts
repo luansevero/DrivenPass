@@ -3,7 +3,6 @@ import Cryptr from "cryptr";
 import { CreateCredentialData } from "../types/credentialTypes";
 import * as credentialValidator from "../validators/credentialValidator";
 import * as credentialRepository from "../repositories/credentialRepository";
-import { number } from "joi";
 
 const cryptr = new Cryptr("aa")
 
@@ -20,13 +19,16 @@ export async function getAll(){
     return allCredentials
 }
 
-export async function getOne(id : number, userId: number){
-    const credential = await credentialValidator.findOne(id, userId);
-    return credential
+export async function getOne(userId: number, id : number){
+    const credential = await credentialValidator.findOne(userId, id);
+
+    const decryptPassword = cryptr.decrypt(credential["password"]);
+
+    return {...credential, password: decryptPassword}
 }
 
 export async function deleteOne(userId:number , id: number){
-    await credentialValidator.findOne(id, userId);
+    await credentialValidator.findOne(userId, id);
 
     await credentialRepository.deleteOne(id);
 }

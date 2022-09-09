@@ -14,10 +14,16 @@ export async function insert(createCredentialData:CredentialData){
 }
 
 export async function findAll(){
-    return await prisma.credentials.findMany()
+    return await prisma.credentials.findMany({
+        select : {
+            id: true,
+            title: true
+        }
+    })
 }
 
 export async function findById(id:number){
+    console.log(id)
     return await prisma.credentials.findUnique({
         where : {id}
     })
