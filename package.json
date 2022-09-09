@@ -2,10 +2,10 @@
   "name": "projeto19-drivenpass",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node src/index.ts",
+    "start": "node dist/index.ts",
     "dev": "nodemon src/index.ts"
   },
   "keywords": [],
