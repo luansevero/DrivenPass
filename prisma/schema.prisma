@@ -16,16 +16,26 @@ model Users {
   email       String        @unique
   password    String
   Credentials Credentials[]
+  SafetyNotes SafetyNotes[]
 }
 
 model Credentials {
-  id       Int    @id @default(autoincrement())
-  user     Users  @relation(fields: [userId], references: [id])
-  userId   Int
-  url      String
-  password String
-  title    String
+  id           Int      @id @default(autoincrement())
+  user         Users    @relation(fields: [userId], references: [id])
+  userId       Int
+  url          String
+  password     String
+  title        String
   creationDate DateTime @default(now())
 
   @@unique([userId, title])
+}
+
+model SafetyNotes {
+  id           Int      @id @default(autoincrement())
+  user         Users    @relation(fields: [userId], references: [id])
+  userId       Int
+  title        String   @unique
+  annotation   String
+  creationDate DateTime @default(now())
 }
