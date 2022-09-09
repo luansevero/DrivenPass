@@ -3,30 +3,30 @@ import { validateSchemaMiddleware } from "../middlewares/schemaMiddleware";
 import { credentialSchema } from "../schemas/credentialSchema";
 import * as credentialController from "../controllers/credentialController";
 import authenticateToken from "../middlewares/authenticateTokenMiddleware";
-const CredentialRouter = Router();
+const credentialRouter = Router();
 
-CredentialRouter.post(
+credentialRouter.post(
     "/credential/create",
     authenticateToken,
     validateSchemaMiddleware(credentialSchema),
     credentialController.create
 );
 
-CredentialRouter.get(
+credentialRouter.get(
     "/credential",
     authenticateToken,
     credentialController.getAll
 );
-CredentialRouter.get(
+credentialRouter.get(
     "/credential/:id", 
     authenticateToken, 
     credentialController.getOne
 );
 
-CredentialRouter.delete(
+credentialRouter.delete(
     "/credential/delete/:id", 
     authenticateToken ,
     credentialController.deleteOne
 );0
 
-export default CredentialRouter;
+export default credentialRouter;
