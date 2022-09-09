@@ -14,7 +14,6 @@ export function validateSchemaMiddleware(schema: ObjectSchema) {
         })
       return res.status(422).send(errors)
     }
-
     next();
   };
 }
