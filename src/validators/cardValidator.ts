@@ -4,13 +4,13 @@ import { DuplicateCardsData, GetCardData } from "../types/cardTypes";
 import { ErrorInfo } from "../middlewares/errorHandlerMiddleware";
 
 export async function findDuplicate(userId_title: DuplicateCardsData) {
-    const credential : Cards = await cardRepository.findByTitleAndUserId(userId_title);
-    if(credential) throw new ErrorInfo("error_unprocessable_entity", "Already have the same credential title");
+    const card : Cards = await cardRepository.findByTitleAndUserId(userId_title);
+    if(card) throw new ErrorInfo("error_unprocessable_entity", "Already have the same card title");
 }
 
 export async function findAll(){
     const allCards = await cardRepository.findAll();
-    if(allCards.length === 0) throw new ErrorInfo("error_not_found", "Don't have any credential here :(");
+    if(allCards.length === 0) throw new ErrorInfo("error_not_found", "Don't have any card here :(");
     return allCards;
 }
 
