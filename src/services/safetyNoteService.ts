@@ -1,15 +1,11 @@
-import Cryptr from "cryptr";
-
 import { CreateSafetyNoteData } from "../types/safetyNoteTypes";
 import * as safetyNoteValidator from "../validators/safetyNoteValidator";
 import * as safetyNoteRepository from "../repositories/safetyNoteRepository";
 
-const cryptr = new Cryptr("aa")
-
-export async function create( userId: number, createSafetyNoteData : CreateSafetyNoteData ){
+export async function create(createSafetyNoteData : CreateSafetyNoteData ){
     await safetyNoteValidator.findTitle(createSafetyNoteData["title"]);
 
-    await safetyNoteRepository.insert({...createSafetyNoteData, userId: userId});
+    await safetyNoteRepository.insert(createSafetyNoteData);
 }
 
 export async function getAll(){

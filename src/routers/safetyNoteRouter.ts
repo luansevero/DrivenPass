@@ -6,25 +6,25 @@ import authenticateToken from "../middlewares/authenticateTokenMiddleware";
 const safetyNoteRouter = Router();
 
 safetyNoteRouter.post(
-    "/safetyNote/create",
+    "/safetynote/create",
     authenticateToken,
     validateSchemaMiddleware(safetyNoteSchema),
     safetyNoteController.create
 );
 
 safetyNoteRouter.get(
-    "/safetyNote",
+    "/safetynote",
     authenticateToken,
     safetyNoteController.getAll
 );
 safetyNoteRouter.get(
-    "/safetyNote/:id", 
+    "/safetynote/:id", 
     authenticateToken, 
     safetyNoteController.getOne
 );
 
 safetyNoteRouter.delete(
-    "/safetyNote/delete/:id", 
+    "/safetynote/delete/:id", 
     authenticateToken ,
     safetyNoteController.deleteOne
 );0
