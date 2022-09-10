@@ -15,10 +15,11 @@ model Users {
   id          Int           @id @default(autoincrement())
   email       String        @unique
   password    String
-  createDate DateTime @default(now())
+  createDate  DateTime      @default(now())
   Credentials Credentials[]
   SafetyNotes SafetyNotes[]
   Cards       Cards[]
+  Network     Network[]
 }
 
 model Credentials {
@@ -43,18 +44,18 @@ model SafetyNotes {
 }
 
 model Cards {
-  id      Int   @id @default(autoincrement())
-  user    Users @relation(fields: [userId], references: [id])
-  userId Int
-  title String 
-  number String
+  id             Int      @id @default(autoincrement())
+  user           Users    @relation(fields: [userId], references: [id])
+  userId         Int
+  title          String
+  number         String
   cardholderName String
-  securityCode String
+  securityCode   String
   expirationDate String
-  password String
-  isVirtual Boolean
-  type CardType
-  createAt DateTime @default(now()) 
+  password       String
+  isVirtual      Boolean
+  type           CardType
+  createAt       DateTime @default(now())
 
   @@unique([userId, title])
 }
@@ -65,4 +66,15 @@ enum CardType {
   debit
 
   @@map("cardType")
+}
+
+model Network {
+  id       Int    @id @default(autoincrement())
+  user     Users  @relation(fields: [userId], references: [id])
+  userId   Int
+  title    String
+  name     String
+  password String
+
+  @@unique([userId, title])
 }
