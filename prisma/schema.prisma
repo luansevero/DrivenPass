@@ -75,6 +75,7 @@ model Network {
   title    String
   name     String
   password String
+  createAt DateTime @default(now())
 
   @@unique([userId, title])
 }
