@@ -27,6 +27,6 @@ credentialRouter.delete(
     "/credential/delete/:id", 
     authenticateToken ,
     credentialController.deleteOne
-);0
+);
 
 export default credentialRouter;

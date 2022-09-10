@@ -1,6 +1,8 @@
-import Joi from "joi";
+import JoiBase from "joi"
 import JoiDate from "@joi/date";
 import { CardType } from "@prisma/client";
+
+const Joi = JoiBase.extend(JoiDate);
 
 const numberRegex = /^[0-9]{16}/;
 const passwordRegex = /^[0-9]{4}/;

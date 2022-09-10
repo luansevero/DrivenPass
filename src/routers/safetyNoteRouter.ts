@@ -27,6 +27,6 @@ safetyNoteRouter.delete(
     "/safetynote/delete/:id", 
     authenticateToken ,
     safetyNoteController.deleteOne
-);0
+);
 
 export default safetyNoteRouter;
