@@ -23,7 +23,6 @@ export async function findAll(){
 }
 
 export async function findById(id:number){
-    console.log(id)
     return await prisma.credentials.findUnique({
         where : {id}
     })
