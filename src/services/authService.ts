@@ -3,21 +3,21 @@ import jwt from "jsonwebtoken"
 import dotenv from "dotenv"
 
 import { Users } from "@prisma/client";
-import { AuthData } from "../types/authTypes";
+import { CreateAuthData } from "../types/authTypes";
 import * as authValidator from "../validators/authValidator";
 import * as authRepository from "../repositories/authRepository";
 
 dotenv.config();
 
-export async function signup(authData: AuthData){
-    await authValidator.newAccount(authData["email"]);
+export async function signup(createAuthData: CreateAuthData){
+    await authValidator.newAccount(createAuthData["email"]);
 
-    const password = bcrypt.hashSync(authData["password"], 10);
+    const password = bcrypt.hashSync(createAuthData["password"], 10);
 
-    await authRepository.insert({ email:authData["email"], password });
+    await authRepository.insert({ email:createAuthData["email"], password });
 };
 
-export async function signin(authData: AuthData){
+export async function signin(authData: CreateAuthData){
     const user : Users = await authValidator.haveAccount(authData["email"]);
 
     authValidator.samePassword(authData["password"], user["password"]);

@@ -29,7 +29,7 @@ model Credentials {
   url        String
   password   String
   title      String
-  creationAt DateTime @default(now())
+  createAt DateTime @default(now())
 
   @@unique([userId, title])
 }
@@ -41,7 +41,7 @@ model SafetyNotes {
   noteTitle  String
   title      String
   annotation String
-  creationAt DateTime @default(now())
+  createAt DateTime @default(now())
 
   @@unique([userId, title])
 }

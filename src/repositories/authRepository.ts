@@ -1,5 +1,11 @@
 import { prisma } from "../config/database";
-import { AuthData } from "../types/authTypes";
+import { CreateAuthData } from "../types/authTypes";
+
+export async function findById(id: number){
+    return await prisma.users.findUnique({
+        where: {id}
+    })
+}
 
 export async function findByEmail(email: string){
     return await prisma.users.findUnique({
@@ -7,8 +13,8 @@ export async function findByEmail(email: string){
     })
 };
 
-export async function insert (authData : AuthData){
+export async function insert (createAuthData : CreateAuthData){
     await prisma.users.create({
-        data: authData
+        data: createAuthData
     })
 };

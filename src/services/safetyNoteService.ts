@@ -3,7 +3,7 @@ import * as safetyNoteValidator from "../validators/safetyNoteValidator";
 import * as safetyNoteRepository from "../repositories/safetyNoteRepository";
 
 export async function create(createSafetyNoteData : CreateSafetyNoteData ){
-    await safetyNoteValidator.findTitle(createSafetyNoteData["title"]);
+    await safetyNoteValidator.findDuplicate({userId:createSafetyNoteData["userId"], title:createSafetyNoteData["title"]})
 
     await safetyNoteRepository.insert(createSafetyNoteData);
 }
