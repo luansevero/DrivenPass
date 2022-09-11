@@ -2,7 +2,6 @@ import bcrypt from "bcrypt";
 import * as authRepository from "../repositories/authRepository";
 import { ErrorInfo } from "../middlewares/errorHandlerMiddleware";
 import { Users } from "@prisma/client";
-import { Console } from "console";
 
 export async function newAccount(email: string){
     const account : Users = await authRepository.findByEmail(email);
