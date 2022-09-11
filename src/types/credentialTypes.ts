@@ -1,6 +1,6 @@
 import { Credentials } from "@prisma/client";
 
-export type GetCredentialData = Omit<Credentials, "creationDate" >;
+export type GetCredentialData = Omit<Credentials, "createAt" >;
 
 export type CredentialData = Omit<GetCredentialData, "id" >
 
