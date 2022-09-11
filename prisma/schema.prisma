@@ -15,7 +15,7 @@ model Users {
   id          Int           @id @default(autoincrement())
   email       String        @unique
   password    String
-  createDate  DateTime      @default(now())
+  createAt    DateTime      @default(now())
   Credentials Credentials[]
   SafetyNotes SafetyNotes[]
   Cards       Cards[]
@@ -23,24 +23,27 @@ model Users {
 }
 
 model Credentials {
-  id           Int      @id @default(autoincrement())
-  user         Users    @relation(fields: [userId], references: [id])
-  userId       Int
-  url          String
-  password     String
-  title        String
-  creationDate DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  user       Users    @relation(fields: [userId], references: [id])
+  userId     Int
+  url        String
+  password   String
+  title      String
+  creationAt DateTime @default(now())
 
   @@unique([userId, title])
 }
 
 model SafetyNotes {
-  id           Int      @id @default(autoincrement())
-  user         Users    @relation(fields: [userId], references: [id])
-  userId       Int
-  title        String   @unique
-  annotation   String
-  creationDate DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  user       Users    @relation(fields: [userId], references: [id])
+  userId     Int
+  noteTitle  String
+  title      String
+  annotation String
+  creationAt DateTime @default(now())
+
+  @@unique([userId, title])
 }
 
 model Cards {
@@ -69,8 +72,8 @@ enum CardType {
 }
 
 model Network {
-  id       Int    @id @default(autoincrement())
-  user     Users  @relation(fields: [userId], references: [id])
+  id       Int      @id @default(autoincrement())
+  user     Users    @relation(fields: [userId], references: [id])
   userId   Int
   title    String
   name     String
