@@ -1,10 +1,10 @@
 import * as safetyNoteRepository from "../repositories/safetyNoteRepository";
 import { SafetyNotes } from "@prisma/client";
-import { GetSafetyNoteData } from "../types/safetyNoteTypes";
+import { GetSafetyNoteData, DuplicateSafetyNoteData } from "../types/safetyNoteTypes";
 import { ErrorInfo } from "../middlewares/errorHandlerMiddleware";
 
-export async function findTitle(title:string) {
-    const safetyNote : SafetyNotes = await safetyNoteRepository.findByTitle(title);
+export async function findDuplicate(userId_title : DuplicateSafetyNoteData){
+    const safetyNote : SafetyNotes = await safetyNoteRepository.findByTitleAndUserId(userId_title);
     if(safetyNote) throw new ErrorInfo("error_unprocessable_entity", "Already have the same safety note title");
 }
 

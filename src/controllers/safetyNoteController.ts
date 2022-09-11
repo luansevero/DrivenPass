@@ -5,9 +5,9 @@ import * as safetyNoteService from "../services/safetyNoteService";
 
 export async function create(req:Request, res:Response){
     const { userId }  = res.locals
-    const { title, annotation } : CreateSafetyNoteData = req.body;
+    const { title, noteTitle, annotation } : CreateSafetyNoteData = req.body;
 
-    await safetyNoteService.create({userId, title, annotation});
+    await safetyNoteService.create({userId, title, noteTitle, annotation});
     res.sendStatus(201);
 }
 

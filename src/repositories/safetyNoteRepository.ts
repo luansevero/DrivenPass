@@ -1,9 +1,9 @@
 import { prisma } from "../config/database";
-import { CreateSafetyNoteData } from "../types/safetyNoteTypes";
+import { CreateSafetyNoteData, DuplicateSafetyNoteData } from "../types/safetyNoteTypes";
 
-export async function findByTitle(title : string){
+export async function findByTitleAndUserId(userId_title : DuplicateSafetyNoteData){
     return await prisma.safetyNotes.findUnique({
-        where : {title}
+        where:{userId_title}
     })
 };
 

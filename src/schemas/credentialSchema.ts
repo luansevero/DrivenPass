@@ -6,5 +6,5 @@ export const credentialSchema = Joi.object({
     url: Joi.string().min(1).pattern(new RegExp(urlRegex)).required(),
     username: Joi.string().min(1).required(),
     password: Joi.string().min(1).required(),
-    title: Joi.string().min(1).required()
+    title: Joi.string().min(1).max(50).required()
 });
