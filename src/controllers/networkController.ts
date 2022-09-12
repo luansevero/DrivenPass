@@ -4,7 +4,7 @@ import { CreateNetworkData} from '../types/networkTypes';
 import * as networkService from "../services/networkService"
 
 export async function create(req:Request, res:Response){
-    const { userId }  = res.locals
+    const { userId }  = res.locals;
     const { title, name, password } : CreateNetworkData = req.body;
 
     await networkService.create(userId, {title, name, password});
@@ -12,7 +12,8 @@ export async function create(req:Request, res:Response){
 }
 
 export async function getAll(req:Request, res:Response){
-    const allNetworks = await networkService.getAll();
+    const { userId }  = res.locals;
+    const allNetworks = await networkService.getAll(userId);
     res.status(200).send(allNetworks);
 }
 
@@ -27,5 +28,5 @@ export async function deleteOne(req:Request, res:Response){
     const { userId } = res.locals;
     const { id } = req.params;
     await networkService.deleteOne(userId, Number(id));
-    res.sendStatus(200);
+    res.sendStatus(204);
 }

@@ -5,14 +5,15 @@ import * as cardService from "../services/cardService"
 
 export async function create(req:Request, res:Response){
     const { userId }  = res.locals
-    const { number, title, cardholderName, securityCode, expirationDate, password, isVirtual, type } : CreateCardData = req.body;
+    const { title, number, cardholderName, securityCode, expirationDate, password, isVirtual, type } : CreateCardData = req.body;
 
-    await cardService.create(userId, {number, title, cardholderName, securityCode, expirationDate, password, isVirtual, type});
+    await cardService.create(userId, {title, number, cardholderName, securityCode, expirationDate, password, isVirtual, type});
     res.sendStatus(201);
 }
 
 export async function getAll(req:Request, res:Response){
-    const allCards = await cardService.getAll();
+    const { userId }  = res.locals;
+    const allCards = await cardService.getAll(userId);
     res.status(200).send(allCards);
 }
 
@@ -27,5 +28,5 @@ export async function deleteOne(req:Request, res:Response){
     const { userId } = res.locals;
     const { id } = req.params;
     await cardService.deleteOne(userId, Number(id));
-    res.sendStatus(200);
+    res.sendStatus(204);
 }

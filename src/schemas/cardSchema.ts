@@ -13,8 +13,8 @@ export const cardSchema = Joi.object({
     number: Joi.string().regex(new RegExp(numberRegex)).required(),
     cardholderName: Joi.string().min(1).required(),
     securityCode: Joi.string().regex(new RegExp(securityCode)).required(),
-    expirationDate: Joi.date().format("MM/YYYY").required(),
+    expirationDate: Joi.date().format("MM/YY").required(),
     password: Joi.string().regex(new RegExp(passwordRegex)).required(),
-    isVirtual: Joi.boolean().required(),
+    isVirtual: Joi.boolean().strict().required(),
     type: Joi.string().valid(...Object.values(CardType)).required(),
 });

@@ -8,8 +8,8 @@ export async function findUserDuplication(userId_title: DuplicateCredentials) {
     if(credential) throw new ErrorInfo("error_unprocessable_entity", "Already have the same credential title");
 }
 
-export async function findAll(){
-    const allCredentials = await credentialRepository.findAll();
+export async function findAll(userId : number){
+    const allCredentials = await credentialRepository.findAll(userId);
     console.log(allCredentials)
     if(allCredentials.length === 0) throw new ErrorInfo("error_not_found", "Don't have any credential here :(");
     return allCredentials;

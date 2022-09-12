@@ -13,8 +13,9 @@ export async function insert(createSafetyNoteData:CreateSafetyNoteData){
     })
 }
 
-export async function findAll(){
+export async function findAll(userId : number){
     return await prisma.safetyNotes.findMany({
+        where : { userId },
         select : {
             id: true,
             title: true

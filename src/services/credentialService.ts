@@ -14,8 +14,8 @@ export async function create( userId: number, createCredentialData : CreateCrede
     await credentialRepository.insert({...createCredentialData, password:encryptPassword, userId: userId});
 }
 
-export async function getAll(){
-    const allCredentials = await credentialValidator.findAll();
+export async function getAll(userId : number){
+    const allCredentials = await credentialValidator.findAll(userId);
     return allCredentials
 }
 

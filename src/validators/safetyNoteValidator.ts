@@ -8,8 +8,8 @@ export async function findDuplicate(userId_title : DuplicateSafetyNoteData){
     if(safetyNote) throw new ErrorInfo("error_unprocessable_entity", "Already have the same safety note title");
 }
 
-export async function findAll(){
-    const allSafetyNotes = await safetyNoteRepository.findAll();
+export async function findAll(userId : number){
+    const allSafetyNotes = await safetyNoteRepository.findAll(userId);
     if(allSafetyNotes.length === 0) throw new ErrorInfo("error_not_found", "Don't have any credential here :(");
     return allSafetyNotes;
 }

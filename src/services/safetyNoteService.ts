@@ -8,8 +8,8 @@ export async function create(createSafetyNoteData : CreateSafetyNoteData ){
     await safetyNoteRepository.insert(createSafetyNoteData);
 }
 
-export async function getAll(){
-    const allSafetyNotes = await safetyNoteValidator.findAll();
+export async function getAll(userId : number){
+    const allSafetyNotes = await safetyNoteValidator.findAll(userId);
     return allSafetyNotes
 }
 

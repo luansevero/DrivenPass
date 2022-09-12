@@ -8,8 +8,8 @@ export async function findDuplicate(userId_title: DuplicateCardsData) {
     if(card) throw new ErrorInfo("error_unprocessable_entity", "Already have the same card title");
 }
 
-export async function findAll(){
-    const allCards = await cardRepository.findAll();
+export async function findAll(userId : number){
+    const allCards = await cardRepository.findAll(userId);
     if(allCards.length === 0) throw new ErrorInfo("error_not_found", "Don't have any card here :(");
     return allCards;
 }

@@ -13,8 +13,8 @@ export async function create(userId : number, createCardData : CreateCardData){
     await cardRepository.insert({...createCardData, password:encryptPassword, securityCode:encryptSecurityCode, userId});
 }
 
-export async function getAll(){
-    const allCards = await cardValidator.findAll();
+export async function getAll(userId : number){
+    const allCards = await cardValidator.findAll(userId);
     return allCards
 }
 
@@ -24,7 +24,7 @@ export async function getOne(userId: number, id : number){
     const decryptPassword = decrypt(card["password"]);
     const decryptSecurityCode = decrypt(card["securityCode"]);
 
-    return {...card, passord:decryptPassword, securityCode:decryptSecurityCode }
+    return {...card, password:decryptPassword, securityCode:decryptSecurityCode }
 }
 
 export async function deleteOne(userId:number , id: number){

@@ -8,8 +8,8 @@ export async function findDuplicate(userId_title: DuplicateNetworksData) {
     if(network) throw new ErrorInfo("error_unprocessable_entity", "Already have the same network title");
 }
 
-export async function findAll(){
-    const allNetworks = await networkRepository.findAll();
+export async function findAll(userId : number){
+    const allNetworks = await networkRepository.findAll(userId);
     if(allNetworks.length === 0) throw new ErrorInfo("error_not_found", "Don't have any network here :(");
     return allNetworks;
 }

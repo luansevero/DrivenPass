@@ -13,6 +13,8 @@ export function validateSchemaMiddleware(schema: ObjectSchema) {
               const message = details.message.split(" ").splice(1).join(" ");
               return {[erro]:message}
             } else {
+              const urlMessage = details.message.split(" ").splice(1).join(" ");
+              if(urlMessage === "is not allowed to be empty") return {[erro]:urlMessage}
               return {[erro]:"Invalid Url"}
             }
 

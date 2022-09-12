@@ -12,7 +12,8 @@ export async function create(req:Request, res:Response){
 }
 
 export async function getAll(req:Request, res:Response){
-    const allCredentials = await credentialService.getAll();
+    const { userId }  = res.locals;
+    const allCredentials = await credentialService.getAll(userId);
     res.status(200).send(allCredentials);
 }
 
@@ -27,5 +28,5 @@ export async function deleteOne(req:Request, res:Response){
     const { userId } = res.locals;
     const { id } = req.params;
     await credentialService.deleteOne(userId, Number(id));
-    res.sendStatus(200);
+    res.sendStatus(204);
 }

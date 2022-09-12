@@ -12,8 +12,8 @@ export async function create(userId : number, createNetworkData : CreateNetworkD
     await networkRepository.insert({...createNetworkData, password:encryptPassword, userId});
 }
 
-export async function getAll(){
-    const allNetworks = await networkValidator.findAll();
+export async function getAll(userId : number){
+    const allNetworks = await networkValidator.findAll(userId);
     return allNetworks
 }
 

@@ -13,8 +13,9 @@ export async function insert(cardData:CardData){
     })
 }
 
-export async function findAll(){
+export async function findAll(userId : number){
     return await prisma.cards.findMany({
+        where : { userId },
         select : {
             id: true,
             title: true
